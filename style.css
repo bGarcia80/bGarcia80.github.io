@@ -1,0 +1,1186 @@
+/* ==========================================================================
+   1. Variáveis e Reset
+   ========================================================================== */
+:root {
+  --bg: #0b0d12;
+  --surface: #11151d;
+  --surface-soft: #151b25;
+  --border: #252d3a;
+  --text: #f1f4f9;
+  --muted: #929cab;
+  --accent: #8b7cff;
+  --accent-2: #54d6b2;
+  --font: 'DM Sans', sans-serif;
+  --display: 'Space Grotesk', sans-serif;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(139, 124, 255, 0.06), transparent 35%),
+    radial-gradient(circle at 85% 25%, rgba(84, 214, 178, 0.05), transparent 35%);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, p {
+  margin-top: 0;
+}
+
+/* ==========================================================================
+   2. Animações (Keyframes)
+   ========================================================================== */
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(84, 214, 178, 0.7);
+  }
+  50% {
+    transform: scale(1.25);
+    box-shadow: 0 0 18px rgba(84, 214, 178, 1);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   3. Layout Base e Cabeçalho
+   ========================================================================== */
+.page-shell {
+  width: min(1160px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.topbar {
+  height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font: 700 19px var(--display);
+  letter-spacing: -0.8px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #8b7cff, #54d6b2);
+  transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
+}
+
+.brand:hover .brand-mark {
+  transform: rotate(-6deg) scale(1.06);
+  box-shadow: 0 6px 20px rgba(139, 124, 255, 0.35);
+}
+
+.brand-accent {
+  color: #a89dff;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  color: #aab2c0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+nav a:not(.nav-github) {
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.2s ease;
+}
+
+nav a:not(.nav-github)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s var(--ease-smooth);
+}
+
+nav a:not(.nav-github):hover::after {
+  transform: scaleX(1);
+}
+
+nav a:hover,
+footer a:hover,
+.all-projects-link:hover {
+  color: #fff;
+}
+
+.nav-github {
+  color: var(--text);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s var(--ease-smooth);
+}
+
+.nav-github:hover {
+  border-color: rgba(168, 157, 255, 0.5);
+  background: rgba(139, 124, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   4. Seção Hero e Janela de Código
+   ========================================================================== */
+.hero {
+  min-height: 510px;
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  align-items: center;
+  gap: 50px;
+  padding: 70px 0 58px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #a69cff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  animation: pulseDot 2.8s ease-in-out infinite;
+}
+
+h1 {
+  font: 700 clamp(48px, 6vw, 72px) / 1.04 var(--display);
+  letter-spacing: -4px;
+  margin: 22px 0 20px;
+}
+
+.gradient-text {
+  background: linear-gradient(95deg, #a89dff 0%, #69d9c0 50%, #a89dff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 7s ease infinite;
+}
+
+.hero-description {
+  max-width: 510px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 17px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: transform 0.25s var(--ease-smooth), box-shadow 0.25s var(--ease-smooth), border-color 0.2s ease, background 0.2s ease;
+}
+
+.button span {
+  transition: transform 0.25s var(--ease-smooth);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button:hover span {
+  transform: translate(2px, -1px);
+}
+
+.button-primary {
+  color: #0b0d12;
+  background: linear-gradient(110deg, #a89dff, #6fe0c5);
+}
+
+.button-primary:hover {
+  box-shadow: 0 10px 26px rgba(139, 124, 255, 0.28);
+}
+
+.button-secondary {
+  border: 1px solid var(--border);
+  color: #e4e8ef;
+  background: rgba(17, 21, 29, 0.7);
+}
+
+.button-secondary:hover {
+  border-color: rgba(84, 214, 178, 0.45);
+  background: rgba(84, 214, 178, 0.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.hero-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #707b8b;
+  font-size: 11px;
+  margin-top: 34px;
+}
+
+.note-line {
+  width: 24px;
+  height: 1px;
+  background: #566174;
+}
+
+/* Visual Lateral do Hero */
+.hero-visual {
+  min-height: 330px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.visual-orbit {
+  position: absolute;
+  border: 1px solid rgba(154, 143, 255, 0.14);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orbit-one {
+  width: 390px;
+  height: 245px;
+  animation: orbitSpin 38s linear infinite;
+}
+
+.orbit-two {
+  width: 315px;
+  height: 340px;
+  border-color: rgba(84, 214, 178, 0.13);
+  animation: orbitSpin 46s linear infinite reverse;
+}
+
+.code-window {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 390px);
+  border: 1px solid #30394a;
+  border-radius: 13px;
+  background: rgba(18, 23, 33, 0.96);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.42), 0 0 55px rgba(139, 124, 255, 0.09);
+  overflow: hidden;
+  transform: rotate(-2deg);
+  transition: transform 0.4s var(--ease-smooth), border-color 0.3s ease, box-shadow 0.4s var(--ease-smooth);
+}
+
+.hero-visual:hover .code-window {
+  transform: rotate(0deg) translateY(-4px);
+  border-color: rgba(139, 124, 255, 0.45);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5), 0 0 65px rgba(139, 124, 255, 0.16);
+}
+
+.window-bar {
+  height: 42px;
+  border-bottom: 1px solid #283140;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+}
+
+.window-bar > span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #667184;
+}
+
+.window-bar > span:first-child { background: #f17d84; }
+.window-bar > span:nth-child(2) { background: #e8c16b; }
+.window-bar > span:nth-child(3) { background: #65c99d; }
+
+.window-bar small {
+  margin-left: auto;
+  color: #778295;
+  font-size: 10px;
+}
+
+.code-content {
+  padding: 23px 25px 25px;
+  font: 12px / 2.05 ui-monospace, SFMono-Regular, Consolas, monospace;
+  color: #d5dbea;
+}
+
+.code-content p { margin: 0; }
+.indent { padding-left: 22px; }
+.code-purple { color: #bd9cff; }
+.code-blue { color: #8fc9ff; }
+.code-green { color: #8bdbb9; }
+.code-orange { color: #f4bd79; }
+.code-comment {
+  color: #657286;
+  margin-top: 9px !important;
+}
+
+.floating-chip {
+  position: absolute;
+  z-index: 3;
+  border: 1px solid #343e50;
+  background: #171e29;
+  border-radius: 9px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  color: #c5c0ff;
+  animation: floatSlow 4.5s ease-in-out infinite;
+}
+
+.chip-top {
+  top: 20px;
+  right: 28px;
+  padding: 11px 14px;
+  font: 700 15px ui-monospace, monospace;
+}
+
+.chip-bottom {
+  bottom: 16px;
+  left: 0;
+  padding: 10px 13px;
+  color: #a4ddce;
+  font-size: 10px;
+  animation-delay: 2s;
+}
+
+/* ==========================================================================
+   5. Estatísticas
+   ========================================================================== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(110deg, #111720, #10141c);
+  padding: 24px 10px;
+  transition: border-color 0.3s ease;
+}
+
+.stats:hover {
+  border-color: #343f52;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border-right: 1px solid var(--border);
+  transition: transform 0.25s var(--ease-smooth);
+}
+
+.stat-item:last-child {
+  border: 0;
+}
+
+.stat-item:hover {
+  transform: translateY(-2px);
+}
+
+.stat-value {
+  font: 700 27px var(--display);
+  letter-spacing: -1px;
+  transition: color 0.25s ease;
+}
+
+.stat-item:hover .stat-value {
+  color: #b7adff;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   6. Seção de Projetos, Abas e Aviso
+   ========================================================================== */
+.projects-section {
+  padding: 105px 0 95px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 24px;
+}
+
+.section-heading h2 {
+  font: 700 39px var(--display);
+  letter-spacing: -2px;
+  margin: 10px 0 7px;
+}
+
+.heading-period {
+  color: var(--accent-2);
+}
+
+.section-description {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+.all-projects-link {
+  color: #c3c9d4;
+  font-size: 12px;
+  font-weight: 600;
+  padding-bottom: 4px;
+  transition: color 0.2s ease, transform 0.2s var(--ease-smooth);
+}
+
+.all-projects-link:hover {
+  transform: translateX(2px);
+}
+
+/* Abas de Categorias */
+.repo-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 6px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface);
+}
+
+.repo-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font: 600 12px var(--font);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s var(--ease-smooth);
+}
+
+.repo-tab:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.repo-tab:active {
+  transform: scale(0.98);
+}
+
+.repo-tab.is-active {
+  color: var(--text);
+  background: linear-gradient(135deg, rgba(139, 124, 255, 0.2), rgba(84, 214, 178, 0.15));
+  border-color: rgba(139, 124, 255, 0.45);
+  box-shadow: 0 4px 16px rgba(139, 124, 255, 0.12);
+}
+
+.tab-badge {
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #cbd3e0;
+  font-size: 10px;
+  font-weight: 700;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.repo-tab.is-active .tab-badge {
+  background: rgba(84, 214, 178, 0.22);
+  color: #7ee8cb;
+}
+
+/* Aviso sobre o repositório binario_tech */
+.repo-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 13px 16px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(139, 124, 255, 0.26);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  background: rgba(139, 124, 255, 0.06);
+  color: #b7c0cf;
+  font-size: 12px;
+  line-height: 1.6;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.repo-notice:hover {
+  border-color: rgba(139, 124, 255, 0.42);
+  background: rgba(139, 124, 255, 0.09);
+}
+
+.repo-notice p {
+  margin: 0;
+}
+
+.repo-notice strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.repo-notice code {
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #c5beff;
+  font: 500 11px ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.notice-icon {
+  color: #a89dff;
+  font-size: 15px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   7. Barra de Busca e Filtros
+   ========================================================================== */
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 150px;
+  height: 43px;
+  padding: 0 13px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 8px;
+  color: #7f8b9c;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.search-box:hover {
+  border-color: #364154;
+}
+
+.search-box:focus-within {
+  border-color: rgba(139, 124, 255, 0.65);
+  background: var(--surface-soft);
+  box-shadow: 0 0 0 3px rgba(139, 124, 255, 0.14);
+  color: #b7adff;
+}
+
+.search-icon {
+  font-size: 23px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.search-box input {
+  flex: 1;
+  min-width: 0;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font: 12px var(--font);
+}
+
+.search-box input::placeholder {
+  color: #758092;
+}
+
+kbd {
+  border: 1px solid #3a4351;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 10px;
+  color: #7e8998;
+}
+
+.toolbar select {
+  height: 43px;
+  padding: 0 34px 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: #c4ccd8;
+  font: 11px var(--font);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.toolbar select:hover {
+  border-color: #364154;
+}
+
+.toolbar select:focus {
+  border-color: rgba(139, 124, 255, 0.65);
+  box-shadow: 0 0 0 3px rgba(139, 124, 255, 0.14);
+}
+
+/* ==========================================================================
+   8. Grid e Cards de Repositórios
+   ========================================================================== */
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.repo-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 215px;
+  display: flex;
+  flex-direction: column;
+  padding: 19px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: linear-gradient(145deg, #131923, #10141b);
+  cursor: pointer;
+  animation: cardAppear 0.38s var(--ease-smooth) both;
+  transition: transform 0.28s var(--ease-smooth), border-color 0.28s ease, background 0.28s ease, box-shadow 0.28s var(--ease-smooth);
+}
+
+/* Entrada escalonada sutil nos primeiros cards */
+.repo-card:nth-child(1) { animation-delay: 0ms; }
+.repo-card:nth-child(2) { animation-delay: 35ms; }
+.repo-card:nth-child(3) { animation-delay: 70ms; }
+.repo-card:nth-child(4) { animation-delay: 105ms; }
+.repo-card:nth-child(5) { animation-delay: 140ms; }
+.repo-card:nth-child(6) { animation-delay: 175ms; }
+.repo-card:nth-child(n+7) { animation-delay: 200ms; }
+
+/* Linha sutil de destaque no topo do card ao passar o mouse */
+.repo-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.repo-card.is-pages-card::before {
+  background: linear-gradient(90deg, var(--accent-2), #8fc9ff);
+}
+
+.repo-card:hover {
+  transform: translateY(-4px);
+  border-color: #625a9d;
+  background: #171d29;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(139, 124, 255, 0.08);
+}
+
+.repo-card:hover::before {
+  opacity: 1;
+}
+
+.repo-card.is-pages-card:hover {
+  border-color: rgba(84, 214, 178, 0.55);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(84, 214, 178, 0.09);
+}
+
+.repo-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.repo-icon {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #25233e;
+  color: #b4aaff;
+  font-size: 14px;
+  transition: transform 0.28s var(--ease-smooth), background 0.28s ease;
+}
+
+.repo-card:hover .repo-icon {
+  transform: scale(1.08);
+}
+
+.repo-card.is-pages-card .repo-icon {
+  background: rgba(84, 214, 178, 0.14);
+  color: #6fe0c5;
+}
+
+.repo-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.repo-visibility {
+  color: #788496;
+  border: 1px solid #303a49;
+  border-radius: 20px;
+  padding: 3px 8px;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.pages-badge {
+  color: #7ee8cb;
+  background: rgba(84, 214, 178, 0.12);
+  border: 1px solid rgba(84, 214, 178, 0.35);
+  border-radius: 20px;
+  padding: 3px 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.repo-name {
+  color: #e7eaf1;
+  font: 600 15px var(--display);
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+  transition: color 0.2s ease;
+}
+
+.repo-card:hover .repo-name {
+  color: #b7adff;
+}
+
+.repo-card.is-pages-card:hover .repo-name {
+  color: #7ee8cb;
+}
+
+.repo-description {
+  color: #8994a4;
+  font-size: 11px;
+  line-height: 1.65;
+  margin: 0 0 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pages-url-preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 6px 9px;
+  border-radius: 6px;
+  background: rgba(84, 214, 178, 0.08);
+  border: 1px solid rgba(84, 214, 178, 0.22);
+  color: #8ee6ce;
+  font: 500 10.5px ui-monospace, SFMono-Regular, Consolas, monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.pages-url-preview:hover {
+  background: rgba(84, 214, 178, 0.16);
+  border-color: rgba(84, 214, 178, 0.45);
+}
+
+.repo-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+  color: #8792a2;
+  font-size: 10px;
+}
+
+.repo-language {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.language-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--language-color, #9b91ff);
+}
+
+.repo-meta .stars {
+  color: #c8b779;
+}
+
+.repo-updated {
+  margin-left: auto;
+}
+
+.repo-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.card-link {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+  color: #cfd6e3;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s var(--ease-smooth);
+}
+
+.card-link:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  border-color: #465268;
+  transform: translateY(-1px);
+}
+
+.card-link-pages {
+  background: rgba(84, 214, 178, 0.14);
+  border-color: rgba(84, 214, 178, 0.35);
+  color: #86ebd0;
+}
+
+.card-link-pages:hover {
+  background: rgba(84, 214, 178, 0.24);
+  border-color: #54d6b2;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   9. Estados (Carregamento e Vazio)
+   ========================================================================== */
+.status-message {
+  color: #8994a4;
+  font-size: 12px;
+  padding: 25px 0;
+  text-align: center;
+}
+
+.status-message:empty {
+  display: none;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 55px 20px;
+  color: var(--muted);
+  animation: cardAppear 0.3s var(--ease-smooth);
+}
+
+.empty-state > span {
+  font-size: 30px;
+  color: #a89dff;
+}
+
+.empty-state h3 {
+  color: var(--text);
+  margin: 12px 0 7px;
+  font: 600 18px var(--display);
+}
+
+.empty-state p {
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   10. Rodapé e Acessibilidade
+   ========================================================================== */
+footer {
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  color: #7e8998;
+  font-size: 11px;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer > a:nth-of-type(2) {
+  margin-left: auto;
+  color: #b6adff;
+  transition: color 0.2s ease;
+}
+
+.footer-brand {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.footer-brand .brand-mark {
+  width: 28px;
+  height: 28px;
+  font-size: 9px;
+}
+
+.copyright {
+  color: #697486;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   11. Responsividade e Preferências de Movimento
+   ========================================================================== */
+@media (max-width: 850px) {
+  .hero {
+    gap: 20px;
+  }
+
+  .hero-visual {
+    transform: scale(0.9);
+  }
+
+  .repo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .page-shell {
+    width: min(100% - 32px, 520px);
+  }
+
+  .topbar {
+    height: 70px;
+  }
+
+  nav {
+    gap: 14px;
+  }
+
+  nav a:first-child {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 62px 0 35px;
+    gap: 30px;
+  }
+
+  .hero-visual {
+    min-height: 280px;
+    transform: none;
+  }
+
+  .code-window {
+    width: min(100% - 20px, 390px);
+  }
+
+  .orbit-one {
+    width: 320px;
+  }
+
+  .orbit-two {
+    height: 290px;
+  }
+
+  h1 {
+    font-size: 57px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 22px;
+  }
+
+  .stat-item:nth-child(2) {
+    border: 0;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+
+  .projects-section {
+    padding: 75px 0 65px;
+  }
+
+  .section-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 17px;
+  }
+
+  .section-heading h2 {
+    font-size: 34px;
+  }
+
+  .repo-tabs {
+    width: 100%;
+  }
+
+  .repo-tab {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+  }
+
+  .search-box {
+    flex-basis: 100%;
+  }
+
+  .toolbar select {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .repo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    flex-wrap: wrap;
+    padding: 22px 0;
+    gap: 12px 18px;
+  }
+
+  footer p {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  footer > a:nth-of-type(2) {
+    margin-left: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

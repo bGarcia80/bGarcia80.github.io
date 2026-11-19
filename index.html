@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conheça meus projetos, repositórios públicos e sites no GitHub Pages.">
+  <title>Meu GitHub | Portfólio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Página inicial">
+        <span class="brand-mark">GH</span>
+        <span>meu<span class="brand-accent">github</span></span>
+      </a>
+      <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#projetos" data-nav-tab="all">Repositórios</a>
+        <a href="#projetos" data-nav-tab="pages">GitHub Pages</a>
+        <a class="nav-github" href="https://github.com/bGarcia80" target="_blank" rel="noopener noreferrer">GitHub
+          <span>↗</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="sobre">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="status-dot"></span> PORTFÓLIO DE DESENVOLVIMENTO</div>
+          <h1>Ideias que viram<br><span class="gradient-text">projetos.</span></h1>
+          <p class="hero-description">Um espaço para reunir meus projetos, experimentos e estudos em tecnologia. Explore
+            meus repositórios ou acesse diretamente os sites publicados no GitHub Pages.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projetos" data-nav-tab="all">Explorar repositórios
+              <span>↓</span></a>
+            <a class="button button-secondary" href="#projetos" data-nav-tab="pages">Sites no GitHub Pages
+              <span>↗</span></a>
+          </div>
+          <div class="hero-note"><span class="note-line"></span> Desenvolvido com HTML, CSS e JavaScript</div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="visual-orbit orbit-one"></div>
+          <div class="visual-orbit orbit-two"></div>
+          <div class="code-window">
+            <div class="window-bar"><span></span><span></span><span></span><small>meu-portfólio.js</small></div>
+            <div class="code-content">
+              <p><span class="code-purple">const</span> desenvolvedor = {</p>
+              <p class="indent"><span class="code-blue">nome</span>: <span class="code-green">'Bruno Garcia'</span>,</p>
+              <p class="indent"><span class="code-blue">foco</span>: <span class="code-green">'tecnologia'</span>,</p>
+              <p class="indent"><span class="code-blue">aprendizado</span>: <span class="code-green">'contínuo'</span>,
+              </p>
+              <p class="indent"><span class="code-blue">projetos</span>: <span class="code-orange">∞</span></p>
+              <p>};</p>
+              <p class="code-comment">// construindo o próximo projeto...</p>
+              <p><span class="code-purple">return</span> <span class="code-green">'Olá, mundo!'</span>;</p>
+            </div>
+          </div>
+          <div class="floating-chip chip-top"> &lt;/&gt; </div>
+          <div class="floating-chip chip-bottom">✦ criatividade + código</div>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Estatísticas do GitHub">
+        <div class="stat-item"><span class="stat-value" id="repo-count">—</span><span class="stat-label">Repositórios
+            públicos</span></div>
+        <div class="stat-item"><span class="stat-value" id="pages-count">—</span><span class="stat-label">Sites HTML /
+            Pages</span></div>
+        <div class="stat-item"><span class="stat-value" id="star-count">—</span><span class="stat-label">Estrelas
+            recebidas</span></div>
+        <div class="stat-item"><span class="stat-value" id="profile-followers">—</span><span
+            class="stat-label">Seguidores</span></div>
+      </section>
+
+      <section class="projects-section" id="projetos">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow" id="section-eyebrow">MEU TRABALHO</div>
+            <h2 id="section-title">Repositórios<span class="heading-period">.</span></h2>
+            <p class="section-description" id="section-subtitle">Uma seleção dinâmica dos meus projetos públicos no
+              GitHub.</p>
+          </div>
+          <a class="all-projects-link" href="https://github.com/bGarcia80?tab=repositories" target="_blank"
+            rel="noopener noreferrer">Ver tudo no GitHub ↗</a>
+        </div>
+
+        <div class="repo-tabs" role="tablist" aria-label="Categorias de projetos">
+          <button type="button" class="repo-tab is-active" role="tab" aria-selected="true" data-tab="all">
+            <span>Repositórios</span>
+            <span class="tab-badge" id="tab-count-all">0</span>
+          </button>
+          <button type="button" class="repo-tab" role="tab" aria-selected="false" data-tab="pages">
+            <span>GitHub Pages &amp; HTML</span>
+            <span class="tab-badge" id="tab-count-pages">0</span>
+          </button>
+        </div>
+
+        <div class="repo-notice" role="note">
+          <span class="notice-icon" aria-hidden="true">ⓘ</span>
+          <p>
+            <strong>Aviso sobre o repositório <code>binario_tech</code>:</strong> O GitHub acabou identificando
+            <code>HTML</code> como uma das linguagens desse repositório, o que fazia o filtro classificá-lo
+            automaticamente como um site no GitHub Pages. Como o <code>binario_tech</code> não possui uma página
+            publicada no GitHub Pages, o redirecionamento e a filtragem de Pages foram desativados para ele.
+          </p>
+        </div>
+
+        <div class="toolbar">
+          <label class="search-box">
+            <span class="search-icon">⌕</span>
+            <input type="search" id="search-input" placeholder="Buscar um projeto..." autocomplete="off">
+            <kbd>/</kbd>
+          </label>
+          <label class="filter-wrap">
+            <span class="sr-only">Filtrar por linguagem</span>
+            <select id="language-filter">
+              <option value="">Todas as linguagens</option>
+            </select>
+          </label>
+          <select id="sort-filter" aria-label="Ordenar repositórios">
+            <option value="updated">Mais recentes</option>
+            <option value="stars">Mais estrelas</option>
+            <option value="name">Nome (A–Z)</option>
+          </select>
+        </div>
+
+        <div id="repo-status" class="status-message">Carregando repositórios...</div>
+        <div class="repo-grid" id="repo-grid"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span>⌕</span>
+          <h3>Nenhum projeto encontrado</h3>
+          <p>Tente alterar sua pesquisa ou selecionar outra linguagem.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand footer-brand" href="#"><span class="brand-mark">GH</span><span>meu<span
+            class="brand-accent">github</span></span></a>
+      <p>Feito com curiosidade e código.</p>
+      <a href="https://github.com/bGarcia80" target="_blank" rel="noopener noreferrer">@bGarcia80 ↗</a>
+      <span class="copyright">© <span id="year"></span></span>
+    </footer>
+  </div>
+</body>
+
+</html>
